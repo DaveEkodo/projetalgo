@@ -1,85 +1,276 @@
 body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f5f5f5;
+    box-sizing: border-box;
 }
-header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
+
+/* Titre */
+h1, h2, h3 {
+    color: #333;
+}
+
+h1 {
     text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+    font-size: 2.5em;
 }
+
+/* Conteneur principal */
 .container {
-    width: 80%;
-    margin: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+/* Boutons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button.remove {
+    background-color: #f44336;
+}
+
+button.remove:hover {
+    background-color: #da190b;
+}
+
+/* Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: white;
+    overflow-x: auto; /* Permet de faire défiler horizontalement sur les petits écrans */
+    display: block; /* Nécessaire pour le défilement horizontal */
+    max-width: 100%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+    word-wrap: break-word; /* Permet de casser les mots longs pour éviter de déborder */
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Barre de progression */
+.progress-container {
+    margin: 20px 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 20px;
+    background-color: #f0f0f0;
+    border-radius: 10px;
     overflow: hidden;
 }
-#uploadForm {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    position: relative;
-}
-.file-list {
-    margin-top: 10px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background: #f9f9f9;
-}
-.file-item {
-    margin: 5px 0;
-    display: flex;
-    align-items: center; /* Aligner les éléments au centre */
-}
-.file-icon {
-    margin-right: 10px; /* Espacement entre l'icône et le texte */
-    color: #e74c3c; /* Couleur de l'icône PDF */
-}
-.btn {
-    display: inline-block;
-    padding: 10px 20px;
-    margin-top: 10px;
-    cursor: pointer;
-    background: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-.btn:hover {
-    background: #4cae4c;
-}
-/* Styles du modal */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1000;
-    left: 0;
-    top: 0;
-    width: 100%;
+
+.progress {
     height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: #4CAF50;
+    transition: width 0.3s ease-in-out;
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
 }
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+
+/* Messages d'état */
+.status-message {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.status-error {
+    background-color: #ffebee;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+.status-success {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+/* Section de téléchargement */
+.file-upload {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    border-radius: 5px;
+    border: 2px dashed #4CAF50;
+    border-radius: 8px;
+    margin: 20px 0;
 }
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+
+.file-upload input[type="file"] {
+    display: none;
 }
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
+
+.file-upload label {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.file-upload label:hover {
+    background-color: #45a049;
+}
+
+/* Tooltip d'aide */
+.help-tooltip {
+    position: relative;
+    display: inline-block;
+    margin-left: 5px;
+    cursor: help;
+}
+
+.help-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 200px;
+    background-color: #333;
+    color: white;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -100px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.help-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    /* Largeur de la page */
+    body {
+        padding: 10px;
+    }
+
+    /* Titre principal */
+    h1 {
+        font-size: 2em;
+        margin-bottom: 20px;
+    }
+
+    /* Boutons */
+    button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    /* Table */
+    table {
+        font-size: 14px;
+        display: block;
+        overflow-x: auto; /* Ajoute un défilement horizontal pour les petits écrans */
+        white-space: nowrap; /* Empêche la ligne de se casser */
+    }
+
+    th, td {
+        padding: 8px; /* Réduit la taille du padding pour plus de place */
+    }
+
+    /* Section de téléchargement */
+    .file-upload {
+        padding: 15px;
+    }
+
+    /* Barre de progression */
+    .progress-container {
+        padding: 15px;
+    }
+
+    .progress-bar {
+        height: 15px;
+    }
+
+    .progress {
+        height: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    /* Ajustement pour les très petits écrans */
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 15px;
+    }
+
+    .file-upload {
+        padding: 10px;
+    }
+
+    /* Table */
+    table {
+        font-size: 12px;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    th, td {
+        padding: 6px;
+    }
+
+    /* Ajoute une largeur minimale pour les cellules afin qu'elles ne deviennent pas trop petites */
+    td, th {
+        min-width: 100px; /* Vous pouvez ajuster cette valeur selon vos besoins */
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px 12px;
+    }
+
+    .progress-container {
+        padding: 10px;
+    }
+
+    .progress-bar {
+        height: 12px;
+    }
 }

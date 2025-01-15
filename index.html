@@ -1,38 +1,64 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Lien vers Font Awesome -->
-    <title>Détection de Plagiat</title>
+    <title>Application de Détection de Plagiat</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.15.349/pdf.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Application de Détection de Plagiat</h1>
+        <div class="file-upload">
+            <h3>Téléchargez vos documents</h3>
+            <label for="files">
+                Télécharger des PDF
+                <span class="help-tooltip">
+                    ℹ️
+                    <span class="tooltip-text">
+                        Formats supportes: PDF, TXT, DOCX
+                    </span>
+                </span>
+            </label>
+            <input type="file" id="files" accept=".pdf,.txt,.docx" multiple onchange="addDocuments()">
+            <div id="upload-status" class="status-message"></div>
+        </div>
 
-<header>
-    <h1>Application de Détection de Plagiat</h1>
-</header>
-<div class="container">
-    <div id="uploadForm">
-        <h2>Téléchargez vos documents</h2>
-        <button class="btn" id="openModal">Télécharger des PDF</button>
-        <div class="file-list" id="fileList"></div>
-        <button class="btn" id="analyzeBtn" style="display:none;">Analyser</button>
+        <div class="container">
+            <h2>Documents selectionnés</h2>
+            <table id="documentTable">
+                <thead>
+                    <tr>
+                        <th>Nom du document</th>
+                        <th>Heure du telechargement</th>
+                        <th>Taille</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <button id="compareBtn" style="display: none;" onclick="compareDocuments()">
+            Comparer les documents
+        </button>
+
+        <div class="progress-container" id="progress-container" style="display: none;">
+            <h3>Analyse</h3>
+            <div class="progress-bar">
+                <div class="progress" style="width: 0%"></div>
+            </div>
+            <div id="progress-status" class="status-message"></div>
+        </div>
+
+        <div class="container">
+            <h2>Résultats</h2>
+            <div id="results"></div>
+        </div>
     </div>
-</div>
 
-<!-- Modal pour télécharger des fichiers -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Télécharger vos fichiers PDF</h2>
-        <input type="file" id="fileInput" multiple accept=".pdf"><br/>
-        <button class="btn" id="uploadFiles">Ajouter</button>
-    </div>
-</div>
-
-<!-- <script src="./script.js"></script> -->
-<script src="./s.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
